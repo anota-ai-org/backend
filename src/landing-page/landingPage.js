@@ -19,12 +19,11 @@ async function getAuthSheets() {
   });
 
   const spreadsheetId = process.env.SPREADSHEET_ID;
-  // não está reconhecendo a variável SPREADSHEET_ID no .env, não sei pq.
 
   return { auth, client, googlesheets, spreadsheetId };
 }
 
-app.get('/getRows', async (_req, res) => {
+app.get('/getEmails', async (_req, res) => {
   try {
     const { googlesheets, auth, spreadsheetId } = await getAuthSheets();
 
@@ -45,7 +44,7 @@ app.get('/getRows', async (_req, res) => {
   }
 });
 
-app.post('/addRow', async (req, res) => {
+app.post('/addEmail', async (req, res) => {
   try {
     const { googlesheets, auth, spreadsheetId } = await getAuthSheets();
 
