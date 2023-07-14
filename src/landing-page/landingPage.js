@@ -18,9 +18,8 @@ async function getAuthSheets() {
     auth: 'client',
   });
 
-  // const spreadsheetId = process.env.SPREADSHEET_ID;
-  // não consegui descobrir pq não está reconhecendo a variável SPREADSHEET_ID no .env.
-  const spreadsheetId = '1YXlwQSzwZFPZkkfQskyz_-8hI-LWrmmOjoeN0F4SctU';
+  const spreadsheetId = process.env.SPREADSHEET_ID;
+  // não está reconhecendo a variável SPREADSHEET_ID no .env, não sei pq.
 
   return { auth, client, googlesheets, spreadsheetId };
 }
