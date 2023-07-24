@@ -9,15 +9,5 @@
           "src": "src/landing-page/landingPage.js",
           "use": "@vercel/node"
       }
-  ],
-  "routes": [
-      {
-          "src": "/landing-page/(.*)",
-          "dest": "src/landing-page/landingPage.js",
-          "methods": [
-              "GET",
-              "POST"
-          ]
-      }
   ]
 }
