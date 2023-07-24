@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "installCommand": "npm install",
+  "regions": ["gru1"],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "builds": [
+      {
+          "src": "src/landing-page/landingPage.js",
+          "use": "@vercel/node"
+      }
+  ],
+  "routes": [
+      {
+          "src": "/landing-page/(.*)",
+          "dest": "src/landing-page/landingPage.js",
+          "methods": [
+              "GET",
+              "POST"
+          ]
+      }
+  ]
+}
