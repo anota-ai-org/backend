@@ -6,8 +6,10 @@ const app = express();
 app.use(express.json());
 
 async function getAuthSheets() {
+  const credentials = JSON.parse(process.env.CREDENTIALS);
   const auth = new google.auth.GoogleAuth({
-    keyFile: 'credentials.json',
+    credentials,
+    // keyFile: credentials,
     scopes: 'https://www.googleapis.com/auth/spreadsheets',
   });
 
