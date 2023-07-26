@@ -1,0 +1,10 @@
+Dados do projeto no Google cloud:
+
+Nome do projeto => Anotai-LandingPage
+
+Número do projeto => 966691509640
+
+ID do projeto no Google Cloud => anotai-landingpage-394014
+Página do projeto => https://console.cloud.google.com/home/dashboard?project=anotai-landingpage-394014&authuser=2&organizationId=0
+
+Documentação => https://developers.google.com/sheets/api/reference/rest?apix=true&hl=pt-br

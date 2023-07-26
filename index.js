@@ -23,7 +23,23 @@ async function getAuthSheets() {
   return { auth, client, googlesheets, spreadsheetId };
 }
 
-app.get('/getEmails', async (_req, res) => {
+// função para formatar o retorno da API
+function arrayToObjects(array) {
+  const headers = array[0];
+  const objectsArray = [];
+
+  for (let i = 1; i < array.length; i++) {
+    const object = {};
+    for (let j = 0; j < headers.length; j++) {
+      object[headers[j]] = array[i][j] || '';
+    }
+    objectsArray.push(object);
+  }
+
+  return objectsArray;
+}
+
+app.get('/getRows', async (_req, res) => {
   try {
     const { googlesheets, auth, spreadsheetId } = await getAuthSheets();
 
@@ -35,32 +51,30 @@ app.get('/getEmails', async (_req, res) => {
       dateTimeRenderOption: 'FORMATTED_STRING',
     });
 
-    const values = getRows.data.values.map((row) => row[0]);
-    const result = values.join(', ');
-
-    res.send(result);
+    const data = arrayToObjects(getRows.data.values);
+    res.send(data);
   } catch (error) {
     res.status(500).send('Error retrieving rows');
   }
 });
 
-app.post('/addEmail', async (req, res) => {
+app.post('/addRow', async (req, res) => {
   try {
     const { googlesheets, auth, spreadsheetId } = await getAuthSheets();
 
-    const { value } = req.body;
+    const { values } = req.body;
 
     await googlesheets.spreadsheets.values.append({
       auth,
       spreadsheetId,
       range: 'Página1',
-      valueInputOption: 'RAW',
+      valueInputOption: 'USER_ENTERED',
       resource: {
-        values: [value],
+        values,
       },
     });
 
-    res.send('E-mail adicionado com sucesso');
+    res.send('Dados adicionados com sucesso');
   } catch (error) {
     res.status(500).send('Error adding row');
   }
