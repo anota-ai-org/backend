@@ -8,7 +8,7 @@ micros:
     public: true
     commands:
       - npm install
-    run: node .
+    run: node ./src/landing-page
     presets:
       env:
         - name: SPREADSHEET_ID
