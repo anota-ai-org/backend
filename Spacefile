@@ -1,0 +1,15 @@
+# Spacefile Docs: https://go.deta.dev/docs/spacefile/v0
+v: 0
+micros:
+  - name: anotai-api
+    src: .
+    engine: nodejs16
+    primary: true
+    public: true
+    commands:
+      - npm install
+    run: node .
+    presets:
+      env:
+        - name: SPREADSHEET_ID
+        - name: CREDENTIALS
