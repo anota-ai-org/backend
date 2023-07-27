@@ -4,6 +4,7 @@
   "regions": ["gru1"],
   "cleanUrls": true,
   "trailingSlash": false,
+  "buildCommand": "npm i",
   "builds": [
       {
           "src": "src/landing-page/index.js",
