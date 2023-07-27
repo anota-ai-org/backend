@@ -7,7 +7,8 @@ app.use(express.json());
 
 async function getAuthSheets() {
   const auth = new google.auth.GoogleAuth({
-    keyFile: 'credentials.json',
+    // keyFile: 'credentials.json',
+    credentials: JSON.parse(process.env.CREDENTIALS),
     scopes: 'https://www.googleapis.com/auth/spreadsheets',
   });
 
@@ -54,6 +55,7 @@ app.get('/getRows', async (_req, res) => {
     const data = arrayToObjects(getRows.data.values);
     res.send(data);
   } catch (error) {
+    console.log(error);
     res.status(500).send('Error retrieving rows');
   }
 });
