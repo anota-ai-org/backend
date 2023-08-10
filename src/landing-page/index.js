@@ -1,5 +1,6 @@
 const express = require('express');
 const { google } = require('googleapis');
+const { validateRequest } = require('./validations');
 require('dotenv').config();
 
 const app = express();
@@ -60,11 +61,11 @@ app.get('/getRows', async (_req, res) => {
   }
 });
 
-app.post('/addRow', async (req, res) => {
+app.post('/addRow', validateRequest, async (req, res) => {
   try {
     const { googlesheets, auth, spreadsheetId } = await getAuthSheets();
 
-    const { values } = req.body;
+    const { name, email, message } = req.body;
 
     await googlesheets.spreadsheets.values.append({
       auth,
@@ -72,7 +73,7 @@ app.post('/addRow', async (req, res) => {
       range: 'Página1',
       valueInputOption: 'USER_ENTERED',
       resource: {
-        values,
+        values: [[name, email, message]],
       },
     });
 
@@ -85,4 +86,4 @@ app.post('/addRow', async (req, res) => {
 const PORT = process.env.PORT || 3001;
 
 // eslint-disable-next-line prettier/prettier
-app.listen(PORT, () => console.log(`Running on port ${ PORT }`));
+app.listen(PORT, () => console.log(`Running on port ${PORT}`));
