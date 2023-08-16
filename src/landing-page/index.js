@@ -2,8 +2,10 @@ const express = require('express');
 const { google } = require('googleapis');
 const { validateRequest } = require('./validations');
 require('dotenv').config();
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 async function getAuthSheets() {
