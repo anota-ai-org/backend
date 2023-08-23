@@ -11,14 +11,11 @@ const schema = z
     email: z
       .string({ required_error: 'Email is required' })
       .email({ message: 'Invalid email address' }),
-    message: z
-      .string({
-        required_error: 'Message is required',
-        invalid_type_error: 'Message must be a string',
-      })
-      .min(1, { message: 'Message must not be empty' }),
+    message: z.string({
+      invalid_type_error: 'Message must be a string',
+    }),
   })
-  .required();
+  .partial({ message: true });
 
 function validateRequest(req, res, next) {
   try {
