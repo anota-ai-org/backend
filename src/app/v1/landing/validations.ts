@@ -17,15 +17,12 @@ const schema = z
   })
   .partial({ message: true });
 
-function validateRequest(req, res, next) {
+export function validateLandingRegister(body: unknown) {
   try {
-    schema.parse(req.body);
+    schema.parse(body);
   } catch (error) {
-    const message = JSON.parse(error.message)[0].message;
-    return res.status(400).send({ status: 400, validation_error: message });
+    const err = error as Error;
+    const message = JSON.parse(err.message)[0].message;
+    throw { status: "BAD_REQUEST", validation_error: message };
   }
-
-  next();
 }
-
-module.exports = { validateRequest };
