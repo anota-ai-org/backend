@@ -15,15 +15,20 @@
     "@types/react-dom": "18.2.7",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
+    "drizzle-orm": "^0.28.5",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.19",
     "google-spreadsheet": "^2.0.7",
     "googleapis": "^105.0.0",
     "jose": "^4.14.6",
     "next": "13.4.19",
+    "postgres": "^3.3.5",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "typescript": "5.1.6",
     "zod": "^3.22.2"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.19.13"
   }
 }
