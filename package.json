@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate": "drizzle-kit generate:pg",
+    "migrate": "dotenv -e .env.development node ./src/db/drizzle/migrator.ts"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
@@ -29,6 +31,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "dotenv-cli": "^7.3.0",
     "drizzle-kit": "^0.19.13"
   }
 }
