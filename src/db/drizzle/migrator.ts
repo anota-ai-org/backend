@@ -12,4 +12,5 @@ async function migrateNow() {
 
 migrateNow()
   .then(() => console.log("Migration completed successfully"))
-  .catch((err) => console.error("Migration failed: " + err.message + connectionString));
+  .catch((err) => console.error("Migration failed: " + err.message + connectionString))
+  .finally(() => console.log(""));
