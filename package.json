@@ -5,10 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postinstall": "prisma generate",
     "start": "next start",
     "lint": "next lint",
-    "generate": "drizzle-kit generate:pg",
-    "migrate": "dotenv -e .env.development node ./src/db/drizzle/migrator.ts"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
