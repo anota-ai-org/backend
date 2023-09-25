@@ -30,6 +30,7 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.4",
     "dotenv-cli": "^7.3.0",
     "prisma": "^5.3.1"
   }
