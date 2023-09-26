@@ -1,17 +1,21 @@
-import { NextResponse } from 'next/server'
-import type { NextRequest } from 'next/server'
-import { validateLandingRegister } from './app/v1/landing/validations'
+import { NextRequest } from 'next/server'
+import { landingPage } from './helpers/middlewares/landingPage';
+import { userAuth } from './helpers/middlewares/userAuth';
 
-export async function middleware(request: NextRequest) {
-  const body = await request.json();
-
-  try {
-    validateLandingRegister(body);
-  } catch (error) {
-    return NextResponse.json(error, { status: 400 })
+export async function middleware(req: NextRequest) {
+  if (req.nextUrl.pathname.startsWith('/v1/landing/register')) {
+    return landingPage(req);
   }
+
+  return userAuth(req)
 }
 
 export const config = {
-  matcher: '/v1/landing/register',
-}
+  matcher: [
+    "/profile",
+    "/login",
+    "/api/users/:path*",
+    "/api/auth/logout",
+    "/v1/landing/register",
+  ],
+};
